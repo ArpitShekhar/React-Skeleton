@@ -1,20 +1,14 @@
-var React = require("react");
-var ListItem = require("./ListItem.jsx");
-
-//data source
-var ingredients = [{"id":1,"text":"chawal"},
-                   {"id":2,"text":"roti"},
-                   {"id":3,"text":"sabji"}];
+var React = require('react');
+var ListItem = require('./ListItem.jsx');
 
 var List = React.createClass({
-  render : function(){
-    var listItems = ingredients.map(function(item){
-      return <ListItem key={item.id} ingredient={item.text}/>;
-    });
+  render: function() {
+    var createItem = function(text, index){
+      return <ListItem key={text + index} text={text} />;
+    };
     return (
-      <ul>{listItems}</ul>
+      <ul>{this.props.items.map(createItem)}</ul>
     );
   }
 });
-
 module.exports = List;
